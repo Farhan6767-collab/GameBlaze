@@ -144,17 +144,31 @@ document.addEventListener("keydown", function(e) {
     let x = parseInt(player.style.left) || player.offsetLeft;
     let y = parseInt(player.style.top) || player.offsetTop;
 
-    // Arrow Keys + WASD
-    if (e.key === "ArrowRight" || e.key === "d" || e.key === "D") x += 10;
-    if (e.key === "ArrowLeft" || e.key === "a" || e.key === "A") x -= 10;
-    if (e.key === "ArrowUp" || e.key === "w" || e.key === "W") y -= 10;
-    if (e.key === "ArrowDown" || e.key === "s" || e.key === "S") y += 10;
+    switch (e.key.toLowerCase()) {
+        case "w":
+        case "arrowup":
+            y -= 10;
+            break;
+
+        case "s":
+        case "arrowdown":
+            y += 10;
+            break;
+
+        case "a":
+        case "arrowleft":
+            x -= 10;
+            break;
+
+        case "d":
+        case "arrowright":
+            x += 10;
+            break;
+    }
 
     player.style.left = x + "px";
     player.style.top = y + "px";
-
 });
-
 
 </script>
 
