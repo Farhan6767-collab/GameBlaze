@@ -1,49 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Steal Brainrot Game</title>
-
+<title>Steal Brainrot</title>
 <style>
 body{
-    background:#111;
-    color:white;
-    font-family:Arial;
-    text-align:center;
+background:#111;
+color:white;
+font-family:Arial;
+text-align:center;
 }
 
 #game{
-    margin:auto;
-    width:600px;
-    height:400px;
-    background:#228B22;
-    position:relative;
-    border:3px solid white;
+width:700px;
+height:450px;
+background:green;
+margin:auto;
+position:relative;
+border:3px solid white;
 }
 
-.player{
-    width:40px;
-    height:40px;
-    background:blue;
-    position:absolute;
-    left:280px;
-    top:180px;
+#player{
+width:40px;
+height:40px;
+background:blue;
+position:absolute;
+left:330px;
+top:200px;
 }
 
 .brainrot{
-    width:35px;
-    height:35px;
-    background:red;
-    position:absolute;
-    border-radius:50%;
+width:35px;
+height:35px;
+background:red;
+border-radius:50%;
+position:absolute;
 }
 
-button{
-    padding:10px;
-    margin:5px;
-    font-size:16px;
-}
 </style>
-
 </head>
 
 <body>
@@ -52,70 +45,47 @@ button{
 
 <h2>💰 Money: <span id="money">0</span></h2>
 
-<button onclick="spawnBrainrot()">Spawn Brainrot</button>
+<button onclick="spawn()">Spawn Brainrot</button>
 
 <div id="game">
-
-<div class="player" id="player"></div>
-
+<div id="player"></div>
 </div>
 
 
 <script>
 
-let money = 0;
+let money=0;
 
-let player = document.getElementById("player");
-let game = document.getElementById("game");
-
-
-function spawnBrainrot(){
-
-let brainrot = document.createElement("div");
-
-brainrot.className="brainrot";
-
-brainrot.style.left=Math.random()*560+"px";
-brainrot.style.top=Math.random()*360+"px";
-
-game.appendChild(brainrot);
+let game=document.getElementById("game");
+let player=document.getElementById("player");
 
 
-brainrot.onclick=function(){
+function spawn(){
 
-money += 100;
+let b=document.createElement("div");
+
+b.className="brainrot";
+
+b.style.left=Math.random()*650+"px";
+b.style.top=Math.random()*400+"px";
+
+game.appendChild(b);
+
+
+b.onclick=function(){
+
+money+=100;
 
 document.getElementById("money").innerHTML=money;
 
-brainrot.remove();
+b.remove();
 
 }
 
 }
 
-
-// player movement
-
-document.addEventListener("keydown",function(e){
-
-let x=player.offsetLeft;
-let y=player.offsetTop;
-
-
-if(e.key=="ArrowRight") x+=10;
-if(e.key=="ArrowLeft") x-=10;
-if(e.key=="ArrowUp") y-=10;
-if(e.key=="ArrowDown") y+=10;
-
-
-player.style.left=x+"px";
-player.style.top=y+"px";
-
-
-});
 
 </script>
-
 
 </body>
 </html>
