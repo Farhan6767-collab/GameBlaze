@@ -38,7 +38,40 @@ body{
     position:absolute;
 }
 
-</style>
+</style> .base{
+    width:150px;
+    height:120px;
+    background:#555;
+    position:absolute;
+    left:20px;
+    top:20px;
+    border:3px solid white;
+}
+
+.shop{
+    width:120px;
+    height:100px;
+    background:orange;
+    position:absolute;
+    right:20px;
+    top:20px;
+    border:3px solid white;
+}
+
+.sell{
+    width:120px;
+    height:100px;
+    background:gold;
+    position:absolute;
+    left:330px;
+    bottom:20px;
+    border:3px solid white;
+}
+
+.label{
+    color:white;
+    font-weight:bold;
+}
 </head>
 
 <body>
@@ -48,7 +81,17 @@ body{
 <h2>💰 Money: <span id="money">0</span></h2>
 
 <div id="game">
+<div class="base">
+<p class="label">🏠 BASE</p>
+</div>
 
+<div class="shop">
+<p class="label">🛒 SHOP</p>
+</div>
+
+<div class="sell">
+<p class="label">💰 SELL</p>
+</div>
 <div id="player"></div>
 
 </div>
