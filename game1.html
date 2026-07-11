@@ -1,39 +1,41 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Steal Brainrot</title>
+<title>Brainrot World</title>
+
 <style>
 body{
-background:#111;
-color:white;
-font-family:Arial;
-text-align:center;
+    background:#111;
+    color:white;
+    text-align:center;
+    font-family:Arial;
 }
 
 #game{
-width:700px;
-height:450px;
-background:green;
-margin:auto;
-position:relative;
-border:3px solid white;
+    width:800px;
+    height:500px;
+    background:#3aa655;
+    margin:auto;
+    position:relative;
+    border:3px solid white;
+    overflow:hidden;
 }
 
 #player{
-width:40px;
-height:40px;
-background:blue;
-position:absolute;
-left:330px;
-top:200px;
+    width:40px;
+    height:40px;
+    background:blue;
+    position:absolute;
+    left:380px;
+    top:230px;
 }
 
 .brainrot{
-width:35px;
-height:35px;
-background:red;
-border-radius:50%;
-position:absolute;
+    width:45px;
+    height:45px;
+    background:red;
+    border-radius:50%;
+    position:absolute;
 }
 
 </style>
@@ -41,77 +43,77 @@ position:absolute;
 
 <body>
 
-<h1>🧠 Steal Brainrot</h1>
+<h1>🧠 Brainrot World</h1>
 
 <h2>💰 Money: <span id="money">0</span></h2>
 
-<button onclick="spawn()">Spawn Brainrot</button>
-<h2>👑 Admin Panel</h2>
-
-<input id="moneyInput" placeholder="Money amount">
-
-<button onclick="setMoney()">
-Set Money
-</button>
-
-<br><br>
-
-<button onclick="adminSpawn()">
-Admin Spawn Brainrot
-</button>
 <div id="game">
+
 <div id="player"></div>
+
 </div>
 
 
 <script>
 
-let money=0;
+let money = 0;
 
-let game=document.getElementById("game");
-let player=document.getElementById("player");
-
-
-function spawn(){
-
-let b=document.createElement("div");
-
-b.className="brainrot";
-
-b.style.left=Math.random()*650+"px";
-b.style.top=Math.random()*400+"px";
-
-game.appendChild(b);
+let game = document.getElementById("game");
+let player = document.getElementById("player");
 
 
-b.onclick=function(){
+// Brainrot spawn
 
-money+=100;
+function createBrainrot(){
+
+let brain = document.createElement("div");
+
+brain.className="brainrot";
+
+brain.style.left=Math.random()*750+"px";
+brain.style.top=Math.random()*450+"px";
+
+game.appendChild(brain);
+
+
+brain.onclick=function(){
+
+money += 100;
 
 document.getElementById("money").innerHTML=money;
 
-b.remove();
+brain.remove();
 
 }
 
 }
 
-function setMoney(){
 
-let amount = document.getElementById("moneyInput").value;
+// automatically spawn
 
-money = Number(amount);
-
-document.getElementById("money").innerHTML = money;
-
-}
+setInterval(createBrainrot,3000);
 
 
-function adminSpawn(){
+// Player movement
 
-spawn();
+document.addEventListener("keydown",function(e){
 
-}
+let x=player.offsetLeft;
+let y=player.offsetTop;
+
+
+if(e.key=="ArrowRight") x+=10;
+if(e.key=="ArrowLeft") x-=10;
+if(e.key=="ArrowUp") y-=10;
+if(e.key=="ArrowDown") y+=10;
+
+
+player.style.left=x+"px";
+player.style.top=y+"px";
+
+});
+
+
 </script>
 
 </body>
